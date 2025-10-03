@@ -73,13 +73,11 @@ public class Main {
                 injector.getInstance(OrderService.class);
         System.out.println(orderService.getOrdersHistory(bob));
 
-        ShoppingCart shoppingCart = new ShoppingCart();
-        shoppingCart.setUser(bob);
-        shoppingCart.setTickets(new ArrayList<>());
 
         ShoppingCartService shoppingCartService = (ShoppingCartService)
                 injector.getInstance(ShoppingCartService.class);
         shoppingCartService.registerNewShoppingCart(bob);
+        ShoppingCart shoppingCart = shoppingCartService.getByUser(bob);
         shoppingCartService.addSession(tomorrowMovieSession, bob);
         System.out.println(orderService.completeOrder(shoppingCart));
     }
